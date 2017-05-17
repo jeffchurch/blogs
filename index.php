@@ -14,7 +14,10 @@
         echo $view->render('pages/home.html');
     });
  
- 
+     $f3->route('GET /about', function() {
+        $view = new View;
+        echo $view->render('pages/about.html');
+    });
  
     //Run fat free    
     $f3->run();

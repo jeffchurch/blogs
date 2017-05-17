@@ -6,10 +6,32 @@ html,body{
 #navi{
     color: black;
     background-color: silver;
-    font-size: 22px;
+    font-size: 20px;
     height: 100%;
 }
 #trumpet{
     width: 95%;
     height: 15%;
+}
+
+#aboutheader{
+    background-color:silver;
+    height: 15%;
+    font-size: 20px;
+    padding-left: 2%;
+}
+
+#logo{
+    height: 120px;
+    width: 125px;
+    position: relative;
+    right: -10%;
+    top: -50px;
+}
+
+#aboutBody{
+    padding-top: 5%;
+    background-color: silver;
+    font-size: 20px;
+    height: 85%;
 }
