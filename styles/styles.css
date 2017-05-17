@@ -1,0 +1,15 @@
+html,body{
+    height: 100%;
+    width: 100%;
+}
+
+#navi{
+    color: black;
+    background-color: silver;
+    font-size: 22px;
+    height: 100%;
+}
+#trumpet{
+    width: 95%;
+    height: 15%;
+}

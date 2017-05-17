@@ -1,0 +1,13 @@
+ {
+    "name": "jeff/blogs",
+    "authors": [
+                {
+                    "name": "Jeff Church",
+                    "email": "jchurch4@mail.greenriver.edu"
+                    }
+                    ],
+    "require": {
+    "bcosca/fatfree-core": "dev-master"
+    }
+    
+    }
