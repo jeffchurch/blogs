@@ -2,7 +2,6 @@
 
     //require the autoload file
     require_once('vendor/autoload.php');
-    session_start();
     //create an instance of the Base class
     $f3 = Base::instance();
     $f3->set('DEBUG', 3);
