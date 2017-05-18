@@ -11,14 +11,20 @@
     <body>
         <div class="col-sm-12" id="loginHeader">
         <h1>Welcome back!</h1>
-         Please log in below<img src="images/lock.png" id="loginLock"><br/>
+         <strong>Please log in below</strong><img src="images/lock.png" id="loginLock"><br/>
         </div>
         <div class="col-sm-12" id="loginBody">
             <form action ="post">
-            <textarea></textarea>Username<br/>
-            <textarea></textarea>Password<br/>
-            <br/><button type="button" class="btn btn-success">Login</button>
+			<div id="loginContainer">
+                <div class="form-group" id="loginForm">
+                 <input type="text" class="form-control" id="usr"> <p id="loginBoxes">Username</p>
+                 <input type="password" class="form-control" id="pwd"><p id="loginBoxes">Password</p>
+                </div>
+			</div>
+            <br/><button type="button" class="btn btn-success" id="loginButton">Login</button>
+
             </form>
         </div>
+
     </body>
 </html>

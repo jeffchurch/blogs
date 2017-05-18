@@ -23,6 +23,10 @@
         $view = new View;
         echo $view->render('pages/login.html');
     }); 
+      $f3->route('GET /create', function() {
+        $view = new View;
+        echo $view->render('pages/createaccount.html');
+    }); 
  
     //Run fat free    
     $f3->run();

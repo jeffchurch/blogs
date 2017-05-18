@@ -1,12 +1,12 @@
 html,body{
     height: 100%;
     width: 100%;
-    background-color: silver;
+    background-color: rgb(232, 232, 232);
 }
 
 #navi{
     color: black;
-    background-color: silver;
+    background-color: rgb(232, 232, 232);
     font-size: 20px;
     height: 100%;
 }
@@ -32,7 +32,7 @@ html,body{
 
 #aboutBody{
     padding-top: 5%;
-    background-color: silver;
+    background-color: rgb(232, 232, 232);
     font-size: 20px;
     height: 85%;
 }
@@ -51,4 +51,59 @@ html,body{
 #loginBody{
     margin-top: 100px;
     text-align: center;
+}
+
+#loginForm{
+    width: 400px;
+    background-color: rgb(206, 206, 206);
+}
+
+#loginButton{
+    color: black;
+    font-weight: 700;
+    width: 200px;
+    position: relative;
+    right: -60px;
+}
+
+#loginBoxes{
+    position: relative;
+    right: -60%;
+    top: -24px;
+    background-color: rgb(232, 232, 232);
+    width: 125px;
+    font-size: 22px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+#loginContainer{
+        width: 15%;
+    position: relative;
+    right: -46%;
+
+}
+#usr{
+    width: 60%;
+    margin-bottom: -25px;
+    
+}
+
+#pwd{
+    width: 60%;
+    margin-bottom: -20px;
+}
+
+#quickBio{
+    position: relative;
+    left: 60px;
+}
+#startButton{
+    position: relative;
+    left: 50%;
+    height: 60px;
+    width: 250px;
+    font-size: 22pt;
+    color: black;
+    outline: 1px solid;
 }
