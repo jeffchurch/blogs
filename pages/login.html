@@ -7,6 +7,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="styles/styles.css">
 	<title>Login</title>
+	<?php if(isset($_SESSION['username'])): ?>
+	<meta http-equiv="refresh" content="2; URL='http://jchurch.greenrivertech.net/328/blogs/'" />
+	<?php endif; ?>
 	</head>
     <body>
         <div class="col-sm-12" id="loginHeader">
@@ -14,14 +17,14 @@
          <strong>Please log in below</strong><img src="images/lock.png" id="loginLock"><br/>
         </div>
         <div class="col-sm-12" id="loginBody">
-            <form action ="post">
+            <form method="post" action="./login">
 			<div id="loginContainer">
                 <div class="form-group" id="loginForm">
-                 <input type="text" class="form-control" id="usr"> <p id="loginBoxes">Username</p>
-                 <input type="password" class="form-control" id="pwd"><p id="loginBoxes">Password</p>
+                 <input type="text" class="form-control" id="usr" name="username"> <p id="loginBoxes">Username</p>
+                 <input type="password" class="form-control" id="pwd" name="password"><p id="loginBoxes">Password</p>
                 </div>
 			</div>
-            <br/><button type="button" class="btn btn-success" id="loginButton">Login</button>
+            <br/><input type="submit" class="btn btn-success" id="loginButton">Login</button>
 
             </form>
         </div>

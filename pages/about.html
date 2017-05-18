@@ -9,16 +9,18 @@
 	<title>About Us</title>
 	</head>
     <body>
-        <div class= "container col-sm-2" id="navi">
+		<?php if(!isset($_SESSION['username'])): ?>
+        <div class= "container col-sm-1" id="navi">
       <ul class="nav nav-stacked">
         Blog Site<br/>
         <img src="images/trumpet.png" id="trumpet"/><br/>
-        <a href="#">Home </a>><br/>
-        <a href="#">Become a Blogger </a>><br/>
-        <a href="#">About us </a>><br/>
-        <a href="#">Login </a>><br/>
-      </ul>
+        <a href="http://jchurch.greenrivertech.net/328/blogs/">Home </a>><br/>
+        <a href="http://jchurch.greenrivertech.net/328/blogs/create">Become a Blogger </a>><br/>
+        <a href="http://jchurch.greenrivertech.net/328/blogs/about">About us </a>><br/>
+        <a href="http://jchurch.greenrivertech.net/328/blogs/login">Login </a>><br/>
+      </ul>    
         </div>
+		<?php endif; ?>
         <div class="col-sm-10" id="aboutheader">
          <h1>The Blog site</h1>
          Your one-step shop for internet blogs<img src="images/blog_logo.png" id="logo">

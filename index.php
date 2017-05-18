@@ -6,7 +6,7 @@
     $f3 = Base::instance();
     $f3->set('DEBUG', 3);
     //Define a default route
-
+    $blogsDB = new blogsDB();
     
     $f3->route('GET /', function() {
         $view = new View;
@@ -21,7 +21,20 @@
      $f3->route('GET /login', function() {
         $view = new View;
         echo $view->render('pages/login.html');
-    }); 
+    });
+     
+    $f3->route('POST /login', function() {
+        $blogsDB = $GLOBALS['blogsDB'];
+        if($_POST['username'] != null && $_POST['password'] != null){
+        $loggedIn = $blogsDB->checkUserNamePassword($_POST['username'], $_POST['password']);
+        if($loggedIn){
+            echo 'logged in succesfully, welcome back!';
+        }
+        }
+        $view = new View;
+        echo $view->render('pages/login.html');
+    });
+     
       $f3->route('GET /create', function() {
         $view = new View;
         echo $view->render('pages/createaccount.html');

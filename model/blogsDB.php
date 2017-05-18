@@ -25,14 +25,13 @@
         
         function checkUserNamePassword($userName, $password)
         {
-            $userName = mysql_real_escape_string($userName); 
-            $password = mysql_real_escape_string($password);
             $select = "SELECT username, password FROM bloggers WHERE username ='$userName' AND password ='$password' ";
             $results = $this->_pdo->query($select);
-           if(mysql_num_rows($Results) > 0)){
+            $row = $results->fetch(PDO::FETCH_ASSOC);
+           if($row['username'] == $userName && $password == $row['password']){
             session_start();
             
-            $_SESSION['username'] = $username;
+            $_SESSION['username'] = $userName;
             return true;
            }else{
             //login failed
