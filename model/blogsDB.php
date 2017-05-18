@@ -39,15 +39,15 @@
            }      
         }
 
-        function addBlog($fname, $lname, $age)
+        function addBlog($title, $text, $id)
         {
-           $insert = 'INSERT INTO Blogs (fname, lname, age)
-           VALUES(:fname, :lname, :age)';
+           $insert = 'INSERT INTO blogs (blog_title, blog_text, blogger_id)
+           VALUES(:title, :text, :id)';
            
            $statement = $this->_pdo->prepare($insert);
-           $statement->bindValue(':fname', $fname, PDO::PARAM_STR);
-           $statement->bindValue(':lname', $lname, PDO::PARAM_STR);
-           $statement->bindValue(':age', $age, PDO::PARAM_INT);
+           $statement->bindValue(':title', $title, PDO::PARAM_STR);
+           $statement->bindValue(':text', $text, PDO::PARAM_STR);
+           $statement->bindValue(':id', $id, PDO::PARAM_INT);
 
            
            $statement->execute();
