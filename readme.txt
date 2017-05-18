@@ -2,3 +2,6 @@ CREATE TABLE `jchurch_db`.`bloggers` ( `blogger_id` INT(35) NOT NULL AUTO_INCREM
 
 //creates bloggers table
 
+CREATE TABLE `jchurch_db`.`blogs` ( `blog_id` INT(25) NOT NULL AUTO_INCREMENT , `blog_title` VARCHAR(80) NOT NULL , `blog_text` VARCHAR(1000) NOT NULL , `blogger_id` INT(25) NOT NULL , PRIMARY KEY (`blog_id`) ) ENGINE = MyISAM;
+
+//creates blogs table

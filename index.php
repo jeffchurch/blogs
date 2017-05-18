@@ -26,7 +26,24 @@
         $view = new View;
         echo $view->render('pages/createaccount.html');
     }); 
- 
+       $f3->route('POST /create', function() {
+        if($_POST['password'] == $_POST['password2']){
+        if($_POST['username'] != null && $_POST['password'] != null && $_POST['picture'] != null && $_POST['bio'] != null){
+            $blogger = new blogger($_POST['username'], $_POST['password'], $_POST['picture'], $_POST['bio']);
+            session_start();
+            $_SESSION['username'] = $blogger->getUsername();
+        }
+        } else{
+            echo "Passwords did not match!!";
+        }
+        $view = new View;
+        echo $view->render('pages/createaccount.html');
+    });
+    $f3->route('GET /logout', function() {
+        $view = new View;
+        echo $view->render('pages/logout.html');
+    }); 
+       
     //Run fat free    
     $f3->run();
     
