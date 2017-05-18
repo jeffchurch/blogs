@@ -58,6 +58,11 @@
         $view = new View;
         echo $view->render('pages/logout.html');
     }); 
+    
+    $f3->route('GET /user', function() {
+        $view = new View;
+        echo $view->render('pages/user.html');
+    }); 
        
     //Run fat free    
     $f3->run();
