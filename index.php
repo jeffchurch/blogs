@@ -45,6 +45,8 @@
             $blogger = new blogger($_POST['username'], $_POST['password'], $_POST['picture'], $_POST['bio']);
             session_start();
             $_SESSION['username'] = $blogger->getUsername();
+            $blogsDB = $GLOBALS['blogsDB'];
+            $blogsDB->addBlogger($blogger->getUsername(), $blogger->getPassword(), $blogger->getPicture(), $blogger->getBio());
         }
         } else{
             echo "Passwords did not match!!";

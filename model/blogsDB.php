@@ -65,4 +65,17 @@
           return $resultsArray;
         }
         
+        function addBlogger($username, $password, $picture, $bio)
+        {
+            $insert = 'INSERT INTO bloggers (username, password, picture, bio)
+           VALUES(:username, :password, :picture, :bio)';
+           
+           $statement = $this->_pdo->prepare($insert);
+           $statement->bindValue(':username', $username, PDO::PARAM_STR);
+           $statement->bindValue(':password', $password, PDO::PARAM_STR);
+           $statement->bindValue(':picture', $picture, PDO::PARAM_STR);
+           $statement->bindValue(':bio', $bio, PDO::PARAM_STR);
+           $statement->execute();
+        }
+        
     }
