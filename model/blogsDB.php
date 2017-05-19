@@ -81,12 +81,10 @@
         
         function blogsByUser($id)
         {
-         $select = "SELECT blog_title, blog_text FROM blogs WHERE blogger_id = '$id'";
+         $select = "SELECT blogger_id, blog_title, blog_text FROM blogs WHERE blogger_id = '$id'";
          $results = $this->_pdo->query($select);
-         $counter = 0;
          while($row = $results->fetch(PDO::FETCH_ASSOC)){
-            $resultsArray[$row[$counter]] = $row;
-            $counter++;
+            $resultsArray[$row['blogger_id']] = $row;
           }
          return $resultsArray;
         }
