@@ -25,13 +25,14 @@
         
         function checkUserNamePassword($userName, $password)
         {
-            $select = "SELECT username, password FROM bloggers WHERE username ='$userName' AND password ='$password' ";
+            $select = "SELECT blogger_id, username, password FROM bloggers WHERE username ='$userName' AND password ='$password' ";
             $results = $this->_pdo->query($select);
             $row = $results->fetch(PDO::FETCH_ASSOC);
            if($row['username'] == $userName && $password == $row['password']){
             session_start();
             
             $_SESSION['username'] = $userName;
+            $_SESSION['blogger_id'] = $row['blogger_id'];
             return true;
            }else{
             //login failed
@@ -55,7 +56,7 @@
 
         function allBlogs()
         {
-          $select = 'SELECT member_id, fname, lname, age FROM Blogs ORDER BY member_id';
+          $select = 'SELECT member_id, fname, lname, age FROM blogs ORDER BY member_id';
           $results = $this->_pdo->query($select);
           $resultsArray = array();
           
@@ -76,6 +77,18 @@
            $statement->bindValue(':picture', $picture, PDO::PARAM_STR);
            $statement->bindValue(':bio', $bio, PDO::PARAM_STR);
            $statement->execute();
+        }
+        
+        function blogsByUser($id)
+        {
+         $select = "SELECT blog_title, blog_text FROM blogs WHERE blogger_id = '$id'";
+         $results = $this->_pdo->query($select);
+         $counter = 0;
+         while($row = $results->fetch(PDO::FETCH_ASSOC)){
+            $resultsArray[$row[$counter]] = $row;
+            $counter++;
+          }
+         return $resultsArray;
         }
         
     }

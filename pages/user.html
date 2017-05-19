@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+              <repeat group="@blogs" key='{{ @key2 }}' value='{{ @value2 }}'>
+             {{ @value2 }} {{ @key2 }}
+
+              <repeat group="{{ @value2 }}" key='{{ @key }}' value='{{ @value}}'>
+                <p>{{ @key }} - {{ @value }}</p>
+              </repeat>
+              </repeat>
+                      
+    </body> 

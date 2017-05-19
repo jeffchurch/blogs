@@ -45,6 +45,7 @@
             $blogger = new blogger($_POST['username'], $_POST['password'], $_POST['picture'], $_POST['bio']);
             session_start();
             $_SESSION['username'] = $blogger->getUsername();
+            $_SESSION['blogger_id'] = $row['blogger_id'];
             $blogsDB = $GLOBALS['blogsDB'];
             $blogsDB->addBlogger($blogger->getUsername(), $blogger->getPassword(), $blogger->getPicture(), $blogger->getBio());
         }
@@ -59,9 +60,30 @@
         echo $view->render('pages/logout.html');
     }); 
     
-    $f3->route('GET /user', function() {
+    $f3->route('GET /user', function($f3) {
+        $blogsDB = $GLOBALS['blogsDB'];
+        $id =1;
+        if(!empty($_GET['id'])){
+            $id = $_GET['id'];
+        }
+        $blogs = $blogsDB->blogsByUser($id);
+        $f3->set('blogs', $blogs);
         $view = new View;
-        echo $view->render('pages/user.html');
+        echo Template::instance()->render('pages/user.html');
+    });
+    
+    $f3->route('GET /createblog', function() {
+        $view = new View;
+        echo $view->render('pages/newblog.html');
+    });
+    $f3->route('POST /createblog', function($f3) {
+        $blogsDB = $GLOBALS['blogsDB'];
+        if($_POST['blog_title'] != null && $_POST['blog_text'] != null){
+            $newBlog = new blogPost($_POST['blog_title'], $_POST['blog_text'], $_SESSION['blogger_id']);
+            $blogsDB->addBlog($newBlog->getTitle(), $newBlog->getText(), $newBlog->getBlogger());
+        }
+        $view = new View;
+        echo $view->render('pages/newblog.html');
     }); 
        
     //Run fat free    
