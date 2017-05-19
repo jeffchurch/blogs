@@ -4,11 +4,11 @@
         <meta charset="utf-8">
     </head>
     <body>
-              <repeat group="{{ @blogs }}" value='{{ @value2 }}'>
-             {{ @value2['blog_title'] }} ---- {{ @key2 }}
-
-              <repeat group="{{ @value2 }}" key='{{ @key }}' value='{{ @value }}'>
-                <p>{{ @key }} - {{ @value }}</p>
+              <repeat group="{{ @blogs }}" value="{{ @row }}">
+             <repeat group="{{ @row }}" key="{{ @key }}" value="{{ @value }}">
+             <repeat group="{{ @value }}" key="{{ @key2 }}" value="{{ @value2 }}">
+                <p>{{ @key2 }} - {{ @value2 }}</p>
+              </repeat>
               </repeat>
               </repeat>
 

@@ -83,7 +83,8 @@
         {
          $select = "SELECT blogger_id, blog_title, blog_text FROM blogs WHERE blogger_id = '$id'";
          $results = $this->_pdo->query($select);
-         while($row = $results->fetch(PDO::FETCH_ASSOC)){
+         
+         while($row = $results->fetchAll(PDO::FETCH_ASSOC)){
             $resultsArray[$row['blogger_id']] = $row;
           }
          return $resultsArray;

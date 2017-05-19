@@ -48,6 +48,7 @@ class ComposerStaticInit991dd8cd8eb8f6ea8016ede307b1f60d
         'Web\\OAuth2' => __DIR__ . '/..' . '/bcosca/fatfree-core/web/oauth2.php',
         'Web\\OpenID' => __DIR__ . '/..' . '/bcosca/fatfree-core/web/openid.php',
         'Web\\Pingback' => __DIR__ . '/..' . '/bcosca/fatfree-core/web/pingback.php',
+        'blogPost' => __DIR__ . '/../..' . '/classes/blogPost.php',
         'blogger' => __DIR__ . '/../..' . '/classes/blogger.php',
         'blogsDB' => __DIR__ . '/../..' . '/model/blogsDB.php',
     );

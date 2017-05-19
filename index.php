@@ -45,8 +45,6 @@
             $blogger = new blogger($_POST['username'], $_POST['password'], $_POST['picture'], $_POST['bio']);
             session_start();
             $_SESSION['username'] = $blogger->getUsername();
-            $_SESSION['blogger_id'] = $row['blogger_id'];
-            $blogsDB = $GLOBALS['blogsDB'];
             $blogsDB->addBlogger($blogger->getUsername(), $blogger->getPassword(), $blogger->getPicture(), $blogger->getBio());
         }
         } else{
@@ -73,13 +71,16 @@
     });
     
     $f3->route('GET /createblog', function() {
+        print_r($_SESSION);
         $view = new View;
         echo $view->render('pages/newblog.html');
     });
+    
     $f3->route('POST /createblog', function($f3) {
         $blogsDB = $GLOBALS['blogsDB'];
-        if($_POST['blog_title'] != null && $_POST['blog_text'] != null){
-            $newBlog = new blogPost($_POST['blog_title'], $_POST['blog_text'], $_SESSION['blogger_id']);
+        if($_POST['blog_title'] != null && $_POST['blog_text'] != null && $_POST['blogger_id'] != null){
+            header('Location: http://jchurch.greenrivertech.net/328/blogs/');
+            $newBlog = new blogPost($_POST['blog_title'], $_POST['blog_text'], $_POST['blogger_id']);
             $blogsDB->addBlog($newBlog->getTitle(), $newBlog->getText(), $newBlog->getBlogger());
         }
         $view = new View;
