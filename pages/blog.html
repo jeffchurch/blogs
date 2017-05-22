@@ -6,10 +6,11 @@
 	<meta name ="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="styles/styles.css">
-	<title>Blogs</title>
+	<title>blog</title>
 	</head>
     <body>
-		<?php if(!isset($_SESSION['username'])): ?>
+		<check if="{{ !isset($_SESSION['username']) }}">
+            <true>
         <div class= "container col-sm-1" id="navi">
       <ul class="nav nav-stacked">
         Blog Site<br/>
@@ -20,7 +21,7 @@
         <a href="http://jchurch.greenrivertech.net/328/blogs/login">Login </a>><br/>
       </ul>    
         </div>
-		<?php else: ?>
+        </true><false>
 		<div class= "container col-sm-1" id="navi">
       <ul class="nav nav-stacked">
         Blog Site<br/>
@@ -32,23 +33,10 @@
         <a href="http://jchurch.greenrivertech.net/328/blogs/logout">Logout </a>><br/>
       </ul>    
         </div>
-		<?php endif; ?>
+		</false>
+        </check>
 		<div class="row col-md-11 col-xs-11 page-container">
-			<!-- some sort of for each loop here-->
-		<div class ="card-box col-md-4 col-sm-6">
-			<div class="card">
-				<img src ="images/user.png" id="bloggerPhoto">
-				<p class="center">UsernameHere</p>
-				<p id="doubleBorder" class="extend">
-					<a href ="/328/blogs/user?id=1">View Blogs</a>
-					<span class="pull-right">Total : BlogCOunt</span>
-				</p>
-				<p>Something from my latest blog:</p>
-				<p>function to pull latest blog text here!!!</p>
-			</div>
-		</div>
-		
-		
-		</div>
-    </body>
-</html>
+            
+            {{ @blog_title }}
+            <hr>
+            {{ @blog_text }}

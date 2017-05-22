@@ -6,7 +6,10 @@
 	<meta name ="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="styles/styles.css">
-	<title>blog</title>
+	<title>My Blogs</title>
+	<?php if ($_SESSION['blogger_id'] === $id): ?>
+		<?php else: ?><meta http-equiv="refresh" content="1; URL='http://jchurch.greenrivertech.net/328/blogs/'" />
+	<?php endif; ?>
 	</head>
     <body>
 		<?php if (!isset($_SESSION['username'])): ?>
@@ -35,32 +38,34 @@
         </div>
 		
         <?php endif; ?>
-        
-        <div class="col-sm-8" id="loginHeader">
-        <h2><?= $username ?>'s Blogs</h2>
+        <div class="col-sm-8 col-lg-8 col-xs-8" id="loginHeader">
+        <h1>My blogs</h1>
+        <img src="images/user.png" id="loginLock"><br/>
         </div>
-		<div class="row col-md-11 col-xs-11 page-container">
-             <div class="row col-sm-10 col-md-10 col-lg-10">
-             <a href="http://jchurch.greenrivertech.net/328/blogs/blog?blog=<?= $recent[blog_title] ?>"><h4>My most recent blog:</h4></a>
-             <?= $recent[blog_title] ?>: <?= $recent["blog_text"] ?><br/>
-            </div>
-            <div class= "container col-sm-1" id="navi">
-               <img src ="images/user.png" id="userPhoto">
-               <?= $username.PHP_EOL ?>
-               <hr>
-               Bio: <?= $bio.PHP_EOL ?>
-            </div>
-        </div>
-        <div class="row col-md-11 col-xs-11 page-container">
-            <h4>My blogs:</h4>
-              <?php foreach (($blogs?:[]) as $row): ?>
-             <?php foreach (($row?:[]) as $key=>$value): ?>
-                <?php if ($value[blog_title]  ==  $recent[blog_title]): ?>
-                <?php else: ?><a href="http://jchurch.greenrivertech.net/328/blogs/blog?blog=<?= $value[blog_title] ?>"><?= $value[blog_title] ?></a> - word count
-                // word counter -<?= $value[blog_date] ?> <br/>
-                <?= $value[blog_text] ?> <br/><br/>
-                <?php endif; ?>
+		<div class ="grid">
+        <div class ="row">
+			<div class="container col-sm-8">
+				<table class ="table">
+					<tr><th>Blog</th>
+					<th>Update</th>
+					<th>Delete</th> </tr>
+					
+					<?php foreach (($blogs?:[]) as $row): ?>
+					<?php foreach (($row?:[]) as $key=>$value): ?>
+					<?php foreach (($value?:[]) as $key2=>$value2): ?>
+					<tr><td><a href ="http://jchurch.greenrivertech.net/328/blogs/blog?blog=<?= $value2 ?>"><?= $value2 ?></a></td>
+					<td><img src="images/update.JPG"></td>
+					<td><a href ="http://jchurch.greenrivertech.net/328/blogs/delete?delete=<?= $value2 ?>"><img src="images/delete.JPG"></a></td></tr>
+					
+				<?php endforeach; ?>
               <?php endforeach; ?>
               <?php endforeach; ?>
-        </div>
-    </body> 
+				</table>
+			</div>
+			<div class="container col-sm-2">
+				<?= $username ?><br/>
+				<hr>
+				Bio : <?= $bio.PHP_EOL ?>
+		</div>
+			 </div>
+		

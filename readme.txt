@@ -8,3 +8,7 @@ CREATE TABLE `jchurch_db`.`blogs` ( `blog_id` INT(25) NOT NULL AUTO_INCREMENT , 
 
 ALTER TABLE `bloggers` ADD `bio` VARCHAR(1000) NOT NULL ;
 //had to edit bloggers
+
+
+ALTER TABLE `blogs` ADD `blog_date` DATE NOT NULL ;
+//had to add blog dates

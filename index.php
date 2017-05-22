@@ -67,13 +67,35 @@
         $blogs = $blogsDB->blogsByUser($id);
         $f3->set('blogs', $blogs);
         $view = new View;
+        $recent = $blogsDB->getRecentBlog($id);
+        $f3->set('recent', $recent);
+        $username = $blogsDB->getUserName($id);
+        $f3->set('username', $username);
+        $bio = $blogsDB->getBio($id);
+        $f3->set('bio', $bio);
         echo Template::instance()->render('pages/user.html');
     });
     
     $f3->route('GET /createblog', function() {
-        print_r($_SESSION);
         $view = new View;
         echo $view->render('pages/newblog.html');
+    });
+    
+    $f3->route('GET /myblogs', function($f3) { 
+        $blogsDB = $GLOBALS['blogsDB'];
+        $id =1;
+        if(!empty($_GET['id'])){
+            $id = $_GET['id'];
+        }
+        $f3->set('id', $id);
+        $blogs = $blogsDB->blogsByUserJustTitles($id);
+        $f3->set('blogs', $blogs);
+        $view = new View;
+        $username = $blogsDB->getUserName($id);
+        $f3->set('username', $username);
+        $bio = $blogsDB->getBio($id);
+        $f3->set('bio', $bio);
+        echo Template::instance()->render('pages/myblogs.html');
     });
     
     $f3->route('POST /createblog', function($f3) {
@@ -81,12 +103,37 @@
         if($_POST['blog_title'] != null && $_POST['blog_text'] != null && $_POST['blogger_id'] != null){
             header('Location: http://jchurch.greenrivertech.net/328/blogs/');
             $newBlog = new blogPost($_POST['blog_title'], $_POST['blog_text'], $_POST['blogger_id']);
-            $blogsDB->addBlog($newBlog->getTitle(), $newBlog->getText(), $newBlog->getBlogger());
+            $date = date("y-m-d");
+            $blogsDB->addBlog($newBlog->getTitle(), $newBlog->getText(), $newBlog->getBlogger(), $date);
         }
         $view = new View;
         echo $view->render('pages/newblog.html');
     }); 
-       
+    $f3->route('GET /delete', function() {
+        $delete =1;
+        if(!empty($_GET['delete'])){
+            $delete = $_GET['delete'];
+        }
+        $blogsDB = $GLOBALS['blogsDB'];
+        $blogsDB->deleteBlog($delete);
+        $view = new View;
+        echo $view->render('pages/delete.html');
+    });
+    
+    $f3->route('GET /blog', function($f3) {
+        $blogsDB = $GLOBALS['blogsDB'];
+        $blog =1;
+        if(!empty($_GET['blog'])){
+            $blog = $_GET['blog'];
+        }
+        $blogtext = $blogsDB->getBlogText($blog);
+        $f3->set('blog_text', $blogtext);
+        $f3->set('blog_title', $blog);
+        $view = new View;
+        echo Template::instance()->render('pages/blog.html');
+    }); 
+    
+    
     //Run fat free    
     $f3->run();
     

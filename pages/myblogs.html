@@ -7,12 +7,65 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="styles/styles.css">
 	<title>My Blogs</title>
-	<?php if(!isset($_SESSION['username'])): ?>
-	<meta http-equiv="refresh" content="2; URL='http://jchurch.greenrivertech.net/328/blogs/'" />
-	<?php endif; ?>
+	<check if="$_SESSION['blogger_id'] === @id">
+		<false><meta http-equiv="refresh" content="1; URL='http://jchurch.greenrivertech.net/328/blogs/'" /></false>
+	</check>
 	</head>
     <body>
-        <div class="col-sm-12" id="loginHeader">
-        <h1>My blogs</h1>
-        <img src="images/writing.png" id="loginLock"><br/>
+		<check if="{{ !isset($_SESSION['username']) }}">
+            <true>
+        <div class= "container col-sm-1" id="navi">
+      <ul class="nav nav-stacked">
+        Blog Site<br/>
+        <img src="images/trumpet.png" id="trumpet"/><br/>
+        <a href="http://jchurch.greenrivertech.net/328/blogs/">Home </a>><br/>
+        <a href="http://jchurch.greenrivertech.net/328/blogs/create">Become a Blogger </a>><br/>
+        <a href="http://jchurch.greenrivertech.net/328/blogs/about">About us </a>><br/>
+        <a href="http://jchurch.greenrivertech.net/328/blogs/login">Login </a>><br/>
+      </ul>    
         </div>
+        </true><false>
+		<div class= "container col-sm-1" id="navi">
+      <ul class="nav nav-stacked">
+        Blog Site<br/>
+        <img src="images/trumpet.png" id="trumpet"/><br/>
+        <a href="http://jchurch.greenrivertech.net/328/blogs/">Home </a>><br/>
+        <a href='http://jchurch.greenrivertech.net/328/blogs/myblogs?id=<?php print($_SESSION["blogger_id"]); ?>'>My Blogs </a>><br/>
+		<a href="http://jchurch.greenrivertech.net/328/blogs/createblog">Create Blog </a>><br/>
+        <a href="http://jchurch.greenrivertech.net/328/blogs/about">About us </a>><br/>
+        <a href="http://jchurch.greenrivertech.net/328/blogs/logout">Logout </a>><br/>
+      </ul>    
+        </div>
+		</false>
+        </check>
+        <div class="col-sm-8 col-lg-8 col-xs-8" id="loginHeader">
+        <h1>My blogs</h1>
+        <img src="images/user.png" id="loginLock"><br/>
+        </div>
+		<div class ="grid">
+        <div class ="row">
+			<div class="container col-sm-8">
+				<table class ="table">
+					<tr><th>Blog</th>
+					<th>Update</th>
+					<th>Delete</th> </tr>
+					
+					<repeat group="{{ @blogs }}" value="{{ @row }}">
+					<repeat group="{{ @row }}" key="{{ @key }}" value="{{ @value }}">
+					<repeat group="{{ @value }}" key="{{ @key2 }}" value="{{ @value2 }}">
+					<tr><td><a href ="http://jchurch.greenrivertech.net/328/blogs/blog?blog={{ @value2 }}">{{ @value2 }}</a></td>
+					<td><img src="images/update.JPG"></td>
+					<td><a href ="http://jchurch.greenrivertech.net/328/blogs/delete?delete={{ @value2 }}"><img src="images/delete.JPG"></a></td></tr>
+					
+				</repeat>
+              </repeat>
+              </repeat>
+				</table>
+			</div>
+			<div class="container col-sm-2">
+				{{ @username }}<br/>
+				<hr>
+				Bio : {{ @bio }}
+		</div>
+			 </div>
+		

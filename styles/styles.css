@@ -132,3 +132,8 @@ html,body{
 .card{
     width: 300px;
 }
+
+#userPhoto{
+    width: 300px;
+    height: 275px;
+}

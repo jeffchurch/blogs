@@ -40,16 +40,16 @@
            }      
         }
 
-        function addBlog($title, $text, $id)
+        function addBlog($title, $text, $id, $date)
         {
-           $insert = 'INSERT INTO blogs (blog_title, blog_text, blogger_id)
-           VALUES(:title, :text, :id)';
+           $insert = 'INSERT INTO blogs (blog_title, blog_text, blogger_id, blog_date)
+           VALUES(:title, :text, :id, :date)';
            
            $statement = $this->_pdo->prepare($insert);
            $statement->bindValue(':title', $title, PDO::PARAM_STR);
            $statement->bindValue(':text', $text, PDO::PARAM_STR);
            $statement->bindValue(':id', $id, PDO::PARAM_INT);
-
+           $statement->bindValue(':date', $date, PDO::PARAM_INT);
            
            $statement->execute();
         }
@@ -81,7 +81,17 @@
         
         function blogsByUser($id)
         {
-         $select = "SELECT blogger_id, blog_title, blog_text FROM blogs WHERE blogger_id = '$id'";
+         $select = "SELECT blog_title, blog_text, blog_date FROM blogs WHERE blogger_id = '$id'";
+         $results = $this->_pdo->query($select);
+         
+         while($row = $results->fetchAll(PDO::FETCH_ASSOC)){
+            $resultsArray[$row['blogger_id']] = $row;
+          }
+         return $resultsArray;
+        }
+        function blogsByUserJustTitles($id)
+        {
+         $select = "SELECT blog_title FROM blogs WHERE blogger_id = '$id'";
          $results = $this->_pdo->query($select);
          
          while($row = $results->fetchAll(PDO::FETCH_ASSOC)){
@@ -90,4 +100,43 @@
          return $resultsArray;
         }
         
+        function deleteBlog($title)
+        {
+           $delete = "DELETE FROM `blogs` WHERE `blog_title` = '$title'";
+           $this->_pdo->query($delete);
+        }
+        
+        function getUserName($id)
+        {
+            $select = "SELECT username FROM bloggers WHERE blogger_id = '$id'";
+            $results = $this->_pdo->query($select);
+            $row = $results->fetch(PDO::FETCH_ASSOC);
+            return $row['username'];
+        }
+        
+        function getBio($id)
+        {
+            $select = "SELECT bio FROM bloggers WHERE blogger_id = '$id'";
+            $results = $this->_pdo->query($select);
+            $row = $results->fetch(PDO::FETCH_ASSOC);
+            return $row['bio'];  
+        }
+        
+        function getBlogText($title)
+        {
+            $select = "SELECT blog_text FROM blogs WHERE blog_title = '$title'";
+            $results = $this->_pdo->query($select);
+            $row = $results->fetch(PDO::FETCH_ASSOC);
+            return $row['blog_text'];  
+        }
+        
+        function getRecentBlog($id)
+        {
+         $select = "SELECT blog_title, blog_text FROM blogs WHERE blogger_id = '$id'";
+         $results = $this->_pdo->query($select);
+         
+         $row = $results->fetch(PDO::FETCH_ASSOC);
+
+         return $row;
+        }
     }

@@ -35,32 +35,8 @@
         </div>
 		
         <?php endif; ?>
-        
-        <div class="col-sm-8" id="loginHeader">
-        <h2><?= $username ?>'s Blogs</h2>
-        </div>
 		<div class="row col-md-11 col-xs-11 page-container">
-             <div class="row col-sm-10 col-md-10 col-lg-10">
-             <a href="http://jchurch.greenrivertech.net/328/blogs/blog?blog=<?= $recent[blog_title] ?>"><h4>My most recent blog:</h4></a>
-             <?= $recent[blog_title] ?>: <?= $recent["blog_text"] ?><br/>
-            </div>
-            <div class= "container col-sm-1" id="navi">
-               <img src ="images/user.png" id="userPhoto">
-               <?= $username.PHP_EOL ?>
-               <hr>
-               Bio: <?= $bio.PHP_EOL ?>
-            </div>
-        </div>
-        <div class="row col-md-11 col-xs-11 page-container">
-            <h4>My blogs:</h4>
-              <?php foreach (($blogs?:[]) as $row): ?>
-             <?php foreach (($row?:[]) as $key=>$value): ?>
-                <?php if ($value[blog_title]  ==  $recent[blog_title]): ?>
-                <?php else: ?><a href="http://jchurch.greenrivertech.net/328/blogs/blog?blog=<?= $value[blog_title] ?>"><?= $value[blog_title] ?></a> - word count
-                // word counter -<?= $value[blog_date] ?> <br/>
-                <?= $value[blog_text] ?> <br/><br/>
-                <?php endif; ?>
-              <?php endforeach; ?>
-              <?php endforeach; ?>
-        </div>
-    </body> 
+            
+            <?= $blog_title.PHP_EOL ?>
+            <hr>
+            <?= $blog_text ?>
