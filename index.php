@@ -73,6 +73,7 @@
         $f3->set('username', $username);
         $bio = $blogsDB->getBio($id);
         $f3->set('bio', $bio);
+        
         echo Template::instance()->render('pages/user.html');
     });
     

@@ -6,6 +6,7 @@
 	<meta name ="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="styles/styles.css">
+    <script type="text/javascript" src="js/scripts.js"></script>
 	<title>blog</title>
 	</head>
     <body>
@@ -57,7 +58,9 @@
              <?php foreach (($row?:[]) as $key=>$value): ?>
                 <?php if ($value[blog_title]  ==  $recent[blog_title]): ?>
                 <?php else: ?><a href="http://jchurch.greenrivertech.net/328/blogs/blog?blog=<?= $value[blog_title] ?>"><?= $value[blog_title] ?></a> - word count
-                // word counter -<?= $value[blog_date] ?> <br/>
+                 <script language="javascript">
+                  document.write(WordCount("<?= $value[blog_text] ?>"));</script>
+                -<?= $value[blog_date] ?> <br/>
                 <?= $value[blog_text] ?> <br/><br/>
                 <?php endif; ?>
               <?php endforeach; ?>

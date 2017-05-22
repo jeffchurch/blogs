@@ -33,6 +33,7 @@
             
             $_SESSION['username'] = $userName;
             $_SESSION['blogger_id'] = $row['blogger_id'];
+            $_COOKIE['blogger_id'] = $_SESSION['blogger_id'];
             return true;
            }else{
             //login failed
