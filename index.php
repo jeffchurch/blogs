@@ -8,11 +8,20 @@
     //Define a default route
     $blogsDB = new blogsDB();
     
-    $f3->route('GET /', function() {
+    $f3->route('GET /', function($f3) {
+        $blogsDB = $GLOBALS['blogsDB'];
+        $f3->set('blogsDB', $blogsDB);
+        $allBloggers = $blogsDB->getAllBloggers();
+        $f3->set('allBloggers', $allBloggers);
+        
+        $allRecents = $blogsDB->getAllRecents();
+        $f3->set('allRecents', $allRecents);
+        
+        
         $view = new View;
-        echo $view->render('pages/home.html');
+        echo Template::instance()->render('pages/home.html');
     });
- 
+
      $f3->route('GET /about', function() {
         $view = new View;
         echo $view->render('pages/about.html');

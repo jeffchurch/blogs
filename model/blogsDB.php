@@ -55,14 +55,26 @@
            $statement->execute();
         }
 
-        function allBlogs()
+        function getAllBlogs()
         {
-          $select = 'SELECT member_id, fname, lname, age FROM blogs ORDER BY member_id';
+          $select = 'SELECT * FROM blogs ORDER BY blogger_id';
           $results = $this->_pdo->query($select);
           $resultsArray = array();
           
-          while($row = $results->fetch(PDO::FETCH_ASSOC)){
-            $resultsArray[$row['member_id']] = $row;
+          while($row = $results->fetchAll(PDO::FETCH_ASSOC)){
+            $resultsArray[$row['blogger_id']] = $row;
+          }
+          return $resultsArray;
+        }
+        
+        function getAllBloggers()
+        {
+          $select = 'SELECT username, blogger_id FROM bloggers ORDER BY blogger_id';
+          $results = $this->_pdo->query($select);
+          $resultsArray = array();
+          
+          while($row = $results->fetchAll(PDO::FETCH_ASSOC)){
+            $resultsArray[$row['blogger_id']] = $row;
           }
           return $resultsArray;
         }
@@ -133,11 +145,20 @@
         
         function getRecentBlog($id)
         {
-         $select = "SELECT blog_title, blog_text FROM blogs WHERE blogger_id = '$id'";
+         $select = "SELECT blog_title, blog_text FROM blogs WHERE blogger_id = '$id' ORDER BY blog_date DESC";
          $results = $this->_pdo->query($select);
          
          $row = $results->fetch(PDO::FETCH_ASSOC);
 
          return $row;
+        }
+        
+           function getAllRecents()
+        {
+         $select = "SELECT blog_text FROM blogs GROUP BY blogger_id ORDER BY blog_date DESC";
+         $results = $this->_pdo->query($select);
+         
+         $row = $results->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
         }
     }
