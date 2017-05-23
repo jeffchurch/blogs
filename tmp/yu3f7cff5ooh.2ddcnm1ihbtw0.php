@@ -8,7 +8,8 @@
 	<link rel="stylesheet" href="styles/styles.css">
 	<title>My Blogs</title>
 	<?php if ($_SESSION['blogger_id'] === $id): ?>
-		<?php else: ?><meta http-equiv="refresh" content="1; URL='http://jchurch.greenrivertech.net/328/blogs/myblogs?id=<?= $_SESSION['blogger_id'] ?>'" />
+		<?php else: ?><meta http-equiv="refresh" content="1; URL='http://jchurch.greenrivertech.net/328/blogs/myblogs?id=<?= $_SESSION['blogger_id'] ?>'" /><?= $id ?>
+	
 	<?php endif; ?>
 	</head>
     <body>

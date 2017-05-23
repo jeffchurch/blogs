@@ -8,7 +8,8 @@
 	<link rel="stylesheet" href="styles/styles.css">
 	<title>My Blogs</title>
 	<check if="$_SESSION['blogger_id'] === @id">
-		<false><meta http-equiv="refresh" content="1; URL='http://jchurch.greenrivertech.net/328/blogs/myblogs?id={{ $_SESSION['blogger_id'] }}'" /></false>
+		<false><meta http-equiv="refresh" content="1; URL='http://jchurch.greenrivertech.net/328/blogs/myblogs?id={{ $_SESSION['blogger_id'] }}'" />{{ @id }}</false>
+	
 	</check>
 	</head>
     <body>

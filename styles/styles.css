@@ -137,3 +137,17 @@ html,body{
     width: 300px;
     height: 275px;
 }
+
+#blog_title{
+    text-align: center;
+    font-size: 24pt;
+}
+
+#blog_body{
+    font-size: 18pt;
+}
+
+#blog_pic{
+    width: 300px;
+    height: 300px;
+}

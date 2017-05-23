@@ -16,8 +16,8 @@
         
         $allRecents = $blogsDB->getAllRecents();
         $f3->set('allRecents', $allRecents);
-        
-        
+        $blogCount = $blogsDB->countBlogs();
+        $f3->set('blogCount', $blogCount);
         $view = new View;
         echo Template::instance()->render('pages/home.html');
     });
@@ -52,9 +52,12 @@
         if($_POST['password'] == $_POST['password2']){
         if($_POST['username'] != null && $_POST['password'] != null && $_POST['picture'] != null && $_POST['bio'] != null){
             $blogger = new blogger($_POST['username'], $_POST['password'], $_POST['picture'], $_POST['bio']);
+            $blogsDB = $GLOBALS['blogsDB'];
             session_start();
             $_SESSION['username'] = $blogger->getUsername();
             $blogsDB->addBlogger($blogger->getUsername(), $blogger->getPassword(), $blogger->getPicture(), $blogger->getBio());
+            $myID = $blogsDB->getMyID($blogger->getUsername());
+            $_SESSION['blogger_id'] = $myID['blogger_id'];
         }
         } else{
             echo "Passwords did not match!!";
@@ -93,7 +96,7 @@
     
     $f3->route('GET /myblogs', function($f3) { 
         $blogsDB = $GLOBALS['blogsDB'];
-        $id =1;
+        $id = 1;
         if(!empty($_GET['id'])){
             $id = $_GET['id'];
         }

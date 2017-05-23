@@ -37,6 +37,6 @@
         <?php endif; ?>
 		<div class="row col-md-11 col-xs-11 page-container">
             
-            <?= $blog_title.PHP_EOL ?>
+            <div id="blog_title"><strong><?= $blog_title ?></strong></div>
             <hr>
-            <?= $blog_text ?>
+            <div class="col-md-9 col-xs-9" id="blog_body"><?= $blog_text ?></div><img src="images/user.png" id="blog_pic" class="col-md-1 col-xs-1">

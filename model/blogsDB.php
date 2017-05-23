@@ -40,6 +40,14 @@
             return false;
            }      
         }
+        
+        function getMyID($userName)
+        {
+          $select = "SELECT blogger_id FROM bloggers WHERE username ='$userName' ";
+            $results = $this->_pdo->query($select);
+            $row = $results->fetch(PDO::FETCH_ASSOC);
+            return $row;
+        }
 
         function addBlog($title, $text, $id, $date)
         {
@@ -155,10 +163,20 @@
         
            function getAllRecents()
         {
-         $select = "SELECT blog_text FROM blogs GROUP BY blogger_id ORDER BY blog_date DESC";
+         $select = " SELECT * FROM (SELECT blog_text, blogger_id FROM blogs ORDER BY blog_date DESC) AS sub GROUP BY blogger_id";
          $results = $this->_pdo->query($select);
          
          $row = $results->fetchAll(PDO::FETCH_ASSOC);
         return $row;
+        }
+        
+        function countBlogs()
+        {
+         $select = "SELECT COUNT(blogger_id) FROM blogs GROUP BY blogger_id";
+         $results = $this->_pdo->query($select);
+         
+         $row = $results->fetchAll(PDO::FETCH_ASSOC);
+        return $row;
+         
         }
     }

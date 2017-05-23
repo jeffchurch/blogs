@@ -36,6 +36,7 @@
 		
         <?php endif; ?>
 		<div class="row col-md-11 col-xs-11 page-container">
+		<div class ="row">
 			<!-- some sort of for each loop here-->
 			<?php foreach (($allBloggers?:[]) as $row): ?>
              <?php foreach (($row?:[]) as $key=>$value): ?>
@@ -44,17 +45,18 @@
 				<img src ="images/user.png" id="bloggerPhoto">
 				<p class="center"><?= $value["username"] ?></p>
 				<p id="doubleBorder" class="extend">
-					<a href ="/328/blogs/user?id=<?= $key +1 ?>">View Blogs</a>
-					<span class="pull-right">Total : BlogCOunt</span>
+					<a href ="/328/blogs/user?id=<?= $key ?>">View Blogs</a>
+					<span class="pull-right">Total : <?= $blogCount[$key]['COUNT(blogger_id)'] ?></span>
 				</p>
-				<p>Something from my latest blog:</p>
-				<?= $allRecents[$key]['blog_text'].PHP_EOL ?>
+				<p>Something from my latest blog: <?= $allRecents[$key]['blog_text'] ?> </p>
 				
 			</div>
-			</div>	
+			</div>
+				<?php if (($key+1) % 3 === 0): ?>
+					</div>
+				<?php endif; ?>
 			 <?php endforeach; ?>
 			<?php endforeach; ?>
-		
 		
 		
 		</div>
